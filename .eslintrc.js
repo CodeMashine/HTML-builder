@@ -15,7 +15,7 @@ module.exports = {
     ],
     'quotes': [
       'error',
-      'single'
+      'semi'
     ],
     'semi': [
       'error',
