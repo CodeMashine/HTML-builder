@@ -9,7 +9,7 @@ function copyDir(mainWay, copyFolder, nameNewFolder) {
         console.log(nameNewFolder + " created");
       });
     } else {
-      fs.rmdir(path.resolve(mainWay, nameNewFolder), (err) => {
+      fs.rm(path.resolve(mainWay, nameNewFolder),{ recursive: true }, (err) => {
         if (err) {
           console.log(err.message);
         } else {
@@ -30,7 +30,7 @@ function copyDir(mainWay, copyFolder, nameNewFolder) {
           path.resolve(copyFrom, file),
           path.resolve(copyTo, file),
           (err) => {
-            if (err) console.log(console.log(message));
+            if (err) console.log(err.message);
           }
         );
       });
