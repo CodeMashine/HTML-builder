@@ -46,6 +46,32 @@ class HTMLBuilder {
     });
   }
 
+  async createDist(){
+    const distPath = path.resolve(__dirname , this.dist) ;
+    try {
+      await fs.promises.rm(distPath,{recursive:true}) ;
+      await fs.promises.mkdir(distPath) ;
+    } catch (error) {
+      await fs.promises.mkdir(distPath) ;
+      console.log(error.message) ;
+    }
+    // if ( isAvaileble )
+    // fs.promises.mkdir(distPath) ;
+  }
+
+  async createAssets(){
+    const assetsPath = path.resolve(__dirname , this.dist,this.assets) ;
+    try {
+      await fs.promises.rm(assetsPath,{recursive:true}) ;
+      await fs.promises.mkdir(assetsPath) ;
+    } catch (error) {
+      await fs.promises.mkdir(assetsPath) ;
+      console.log(error.message) ;
+    }
+  }
+
+
+
   fillAssets(){
     console.log("fill assets work") ;
     const copyFrom = path.resolve(__dirname , this.assets) ;
@@ -149,3 +175,9 @@ class HTMLBuilder {
 const builder = new HTMLBuilder("project-dist" , "assets" , "styles" ,"template.html" , "components") ;
 
 builder.init() ;
+// (async ()=>{
+//   await builder.createDist() ;
+//   await builder.createAssets() ;
+// })() ;
+
+// builder.createDist().then( builder.createAssets()) ;
