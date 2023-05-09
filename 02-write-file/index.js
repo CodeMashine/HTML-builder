@@ -9,10 +9,11 @@ fs.writeFile(path.join(__dirname, '', 'input.txt'), '', (err) => {
 stdout.write('hello! input somethink..\n');
 
 stdin.on('data', (data) => {
-  console.log('data - ' , data) ;
+  const input = data.toString().trim();
+  if(input === 'exit') process.exit() ;
   fs.appendFile(
     path.join(__dirname, '', 'input.txt'),
-    data.toString().trim() + ' ',
+    input + ' ',
     (err) => {
       if (err) console.log(err);
     }
@@ -29,12 +30,3 @@ process.on('exit' , ()=>{
   stdout.write('\ngood luck\n') ;
 });
 
-
-process.on('exit', (code) => {
-  if (code === 0) {
-    // console.log('\nhave a nice day\n') ;
-    stdout.write('\ngood luck\n');
-  } else {
-    console.log('\nsomething was broken\n');
-  }
-});
