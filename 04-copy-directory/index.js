@@ -1,19 +1,19 @@
 function copyDir(mainWay, copyFolder, nameNewFolder) {
-  const fs = require("fs");
-  const path = require("path");
+  const fs = require('fs');
+  const path = require('path');
 
   fs.opendir(path.resolve(mainWay, nameNewFolder), (err) => {
     if (err) {
       fs.mkdir(path.resolve(mainWay, nameNewFolder), (err) => {
         if (err) console.log(err.message);
-        console.log(nameNewFolder + " created");
+        console.log(nameNewFolder + ' created');
       });
     } else {
       fs.rm(path.resolve(mainWay, nameNewFolder),{ recursive: true }, (err) => {
         if (err) {
           console.log(err.message);
         } else {
-          console.log(nameNewFolder + " deleted");
+          console.log(nameNewFolder + ' deleted');
           copyDir(mainWay, copyFolder, nameNewFolder);
         }
       });
@@ -38,4 +38,4 @@ function copyDir(mainWay, copyFolder, nameNewFolder) {
   });
 }
 
-copyDir(__dirname, "files", "files-copy");
+copyDir(__dirname, 'files', 'files-copy');

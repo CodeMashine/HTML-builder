@@ -1,18 +1,18 @@
 const { stdin, stdout } = process;
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
-fs.writeFile(path.join(__dirname, "", "input.txt"), "", (err) => {
+fs.writeFile(path.join(__dirname, '', 'input.txt'), '', (err) => {
   if (err) console.log(err.message);
 });
 
-stdout.write("hello! input somethink..\n");
+stdout.write('hello! input somethink..\n');
 
-stdin.on("data", (data) => {
-  console.log("data - " , data) ;
+stdin.on('data', (data) => {
+  console.log('data - ' , data) ;
   fs.appendFile(
-    path.join(__dirname, "", "input.txt"),
-    data.toString().trim() + " ",
+    path.join(__dirname, '', 'input.txt'),
+    data.toString().trim() + ' ',
     (err) => {
       if (err) console.log(err);
     }
@@ -21,20 +21,20 @@ stdin.on("data", (data) => {
 });
 
 
-process.on("SIGINT" , ()=>{
+process.on('SIGINT' , ()=>{
   process.exit() ;
 }) ;
 
-process.on("exit" , ()=>{
-  stdout.write("\ngood luck\n") ;
+process.on('exit' , ()=>{
+  stdout.write('\ngood luck\n') ;
 });
 
 
-process.on("exit", (code) => {
+process.on('exit', (code) => {
   if (code === 0) {
-    // console.log("\nhave a nice day\n") ;
-    stdout.write("\ngood luck\n");
+    // console.log('\nhave a nice day\n') ;
+    stdout.write('\ngood luck\n');
   } else {
-    console.log("\nsomething was broken\n");
+    console.log('\nsomething was broken\n');
   }
 });

@@ -1,6 +1,6 @@
-const fs = require("fs") ;
+const fs = require('fs') ;
 
-const path = require("path") ;
+const path = require('path') ;
 
 
 class HTMLBuilder {
@@ -10,7 +10,7 @@ class HTMLBuilder {
     this.style = style ;
     this.html = html ;
     this.components = components ;
-    this.output = "index.html" ;
+    this.output = 'index.html' ;
   }
 
   init(){
@@ -20,17 +20,17 @@ class HTMLBuilder {
       if (err) {
         fs.mkdir( distPath, (err) => {
           if (err) console.log(err.message);
-          console.log("created dist");
+          console.log('created dist');
           fs.mkdir(path.resolve(distPath , this.assets) , err=>{
             if(err) return console.log(err.message) ;
-            console.log("create assets") ;
+            console.log('create assets') ;
             this.fillAssets() ;
-            fs.writeFile(path.resolve(distPath , "style.css"),"" , err=>{
+            fs.writeFile(path.resolve(distPath , 'style.css'),'' , err=>{
               if(err) console.log(err.message) ;
             }) ;
             this.cssPicker() ;
             this.HTMLPicker() ;
-            console.log("HTML bulder work ended succesfull") ;
+            console.log('HTML bulder work ended succesfull') ;
           });
         });
       } else {
@@ -38,7 +38,7 @@ class HTMLBuilder {
           if (err) {
             console.log(err.message);
           } else {
-            console.log("deleted dist");
+            console.log('deleted dist');
             this.init() ;
           }
         });
@@ -55,8 +55,6 @@ class HTMLBuilder {
       await fs.promises.mkdir(distPath) ;
       console.log(error.message) ;
     }
-    // if ( isAvaileble )
-    // fs.promises.mkdir(distPath) ;
   }
 
   async createAssets(){
@@ -73,7 +71,7 @@ class HTMLBuilder {
 
 
   fillAssets(){
-    console.log("fill assets work") ;
+    console.log('fill assets work') ;
     const copyFrom = path.resolve(__dirname , this.assets) ;
 
     const distPath = path.resolve(__dirname , this.dist) ;
@@ -107,18 +105,18 @@ class HTMLBuilder {
   }
 
   async cssPicker() {
-    console.log("css picker work") ;
+    console.log('css picker work') ;
 
     const pickFrom = path.resolve(__dirname , this.style) ;
     
     const distPath = path.resolve(__dirname , this.dist) ;
     
-    const stylePath = path.resolve(distPath , "style.css") ;
+    const stylePath = path.resolve(distPath , 'style.css') ;
 
     try {
       let files = await fs.promises.readdir(pickFrom) ;
       files.forEach( file =>{
-        if(file.includes(".css")) {
+        if(file.includes('.css')) {
           fs.readFile(path.resolve(pickFrom , file) , 
             (err , data) => {
               if (err) return err ;
@@ -136,7 +134,7 @@ class HTMLBuilder {
   }
 
   async HTMLPicker(){
-    console.log("html picker work") ;
+    console.log('html picker work') ;
     try {
 
       const componentsPath = path.resolve(__dirname , this.components) ;
@@ -146,13 +144,13 @@ class HTMLBuilder {
       
       for(let name of compNames){
         const namePath = path.resolve(componentsPath , name) ;
-        const filing = await fs.promises.readFile(namePath ,{encoding:"utf-8"}) ;
-        const output = name.replace(".html" , "") ;
+        const filing = await fs.promises.readFile(namePath ,{encoding:'utf-8'}) ;
+        const output = name.replace('.html' , '') ;
         numberComp[output] = filing ;
       }
       
       const templatePath = path.resolve(__dirname , this.html) ;
-      const template = await fs.promises.readFile(templatePath , {encoding:"utf-8"}) ;
+      const template = await fs.promises.readFile(templatePath , {encoding:'utf-8'}) ;
 
       let index = template ;
 
@@ -172,7 +170,7 @@ class HTMLBuilder {
   }
 }
 
-const builder = new HTMLBuilder("project-dist" , "assets" , "styles" ,"template.html" , "components") ;
+const builder = new HTMLBuilder('project-dist' , 'assets' , 'styles' ,'template.html' , 'components') ;
 
 builder.init() ;
 // (async ()=>{

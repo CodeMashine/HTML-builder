@@ -1,6 +1,6 @@
 function cssPicker(from, to, name) {
-  const fs = require("fs");
-  const path = require("path");
+  const fs = require('fs');
+  const path = require('path');
 
   const pickFrom = path.resolve(__dirname, from);
   const pickTo = path.resolve(__dirname, to);
@@ -11,8 +11,8 @@ function cssPicker(from, to, name) {
       fs.unlink(path.resolve(pickTo, name), (err) => {
         if (err) console.log(err.message);
       });
-      fs.writeFile(path.resolve(pickTo, name), "", (err) => {
-        if (err) console.log(name + " created");
+      fs.writeFile(path.resolve(pickTo, name), '', (err) => {
+        if (err) console.log(name + ' created');
       });
     }
   });
@@ -20,8 +20,8 @@ function cssPicker(from, to, name) {
   fs.readdir(pickFrom, (err, data) => {
     if (err) console.log(err.message);
     data.forEach((file) => {
-      if (!file.includes(".css")) return;
-      fs.readFile(path.resolve(pickFrom, file), "", (err, data) => {
+      if (!file.includes('.css')) return;
+      fs.readFile(path.resolve(pickFrom, file), '', (err, data) => {
         if (err) console.log(err.message);
         fs.appendFile(path.resolve(pickTo, name), data, (err) => {
           if (err) console.log(err.message);
@@ -31,4 +31,4 @@ function cssPicker(from, to, name) {
   });
 }
 
-cssPicker("styles", "project-dist", "bundle.css");
+cssPicker('styles', 'project-dist', 'bundle.css');

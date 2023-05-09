@@ -1,11 +1,11 @@
-const fs = require("fs") ;
-const path = require("path") ;
+const fs = require('fs') ;
+const path = require('path') ;
 
-const readableStream = fs.createReadStream(path.join(__dirname , "text.txt"), "utf-8") ;
+const readableStream = fs.createReadStream(path.join(__dirname , 'text.txt'), 'utf-8') ;
 
-let data = "" ;
-readableStream.on( "data" , chunk => data += chunk ) ;
+let data = '' ;
+readableStream.on( 'data' , chunk => data += chunk ) ;
 
-readableStream.on("end" , () => console.log(data) ) ;
+readableStream.on('end' , () => console.log(data) ) ;
 
-readableStream.on("error" , error => console.log(error.message)) ;
+readableStream.on('error' , error => console.log(error.message)) ;
